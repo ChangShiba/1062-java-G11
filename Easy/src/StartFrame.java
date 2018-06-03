@@ -27,12 +27,21 @@ public class StartFrame extends JFrame implements ActionListener
         // 1.生成元件
     	bgPanel = new StartPanel();
     	//請參考java swing 
-    	image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Start.jpg"));
-        contentPanel = new JPanel();
+    	//獲取默認工具包
+    	image = Toolkit.getDefaultToolkit().getImage("Start.jpg");
+    	contentPanel = new JPanel();
+        ImageIcon icon = new ImageIcon("button.png"); 
+        icon.setImage(icon.getImage().getScaledInstance(100,80,Image.SCALE_DEFAULT));
         
         // 2.設置要顯示之資訊與元件
-        Start = new JButton("Start");
-        Start.setBounds(100,100,100,50);//start botton 位置大小
+        Start = new JButton("Start",icon);
+        Start.setBounds(100,100,100,80);//start botton 位置大小
+        Start.setOpaque(false);
+        Start.setVerticalTextPosition(JButton.CENTER);
+        Start.setHorizontalTextPosition(JButton.CENTER);  
+        //Start.setBorder(null);
+        Start.setContentAreaFilled(false);
+        //Start.setSize(Start.getPreferredSize());
         contentPanel.add(Start);
         Start.addActionListener(this);
         Start.addActionListener(new ActionListener() {
@@ -53,7 +62,9 @@ public class StartFrame extends JFrame implements ActionListener
     	Exit.setBounds(100,400,100,50);
     	contentPanel.add(Exit);
     	Exit.addActionListener(this);
+    	//不要borderlayout
         contentPanel.setLayout(null);
+        //透明化
         contentPanel.setOpaque(false);
         // 3.設置背景圖panel之設定與加入contentPanel
         bgPanel.setImage(image);
@@ -81,6 +92,14 @@ public class StartFrame extends JFrame implements ActionListener
 			}
 			frame.initFrame();
 		}
-		
+		if(e.getSource()==Scores) {
+			
+		}
+		if(e.getSource()==Rule) {
+			new Rule();
+		}
+		if(e.getSource()==Exit) {
+			dispose();
+		}
 	}
 }

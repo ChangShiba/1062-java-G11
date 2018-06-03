@@ -6,7 +6,7 @@ public class StartPanel  extends JPanel {
     private Image image = null;
     public StartPanel() {
         super();
-        this.setOpaque(false);
+        this.setOpaque(false);//設定圖片透明
     }
     public Image getImage() {       // 取得image元件
         return image;
