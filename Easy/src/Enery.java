@@ -1,4 +1,4 @@
-package pp;
+
 import java.awt.Image;  
   
 //障礙物
