@@ -1,4 +1,6 @@
+package pp;
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,7 +37,7 @@ public class StartFrame extends JFrame implements ActionListener
         
         // 2.設置要顯示之資訊與元件
         Start = new JButton("Start",icon);
-        Start.setBounds(100,100,100,80);//start botton 位置大小
+        Start.setBounds(775,100,80,80);//start botton 位置大小
         Start.setOpaque(false);
         Start.setVerticalTextPosition(JButton.CENTER);
         Start.setHorizontalTextPosition(JButton.CENTER);  
@@ -51,15 +53,15 @@ public class StartFrame extends JFrame implements ActionListener
           });
         
         Scores = new JButton("Scores");
-        Scores.setBounds(100,200,100,50);
+        Scores.setBounds(775,200,100,50);
         contentPanel.add(Scores);
         Scores.addActionListener(this);
     	Rule = new JButton("Rule");
-    	Rule.setBounds(100,300,100,50);
+    	Rule.setBounds(775,300,100,50);
     	contentPanel.add(Rule);
     	Rule.addActionListener(this);
     	Exit = new JButton("Exit");
-    	Exit.setBounds(100,400,100,50);
+    	Exit.setBounds(775,400,100,50);
     	contentPanel.add(Exit);
     	Exit.addActionListener(this);
     	//不要borderlayout
