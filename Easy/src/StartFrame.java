@@ -30,9 +30,9 @@ public class StartFrame extends JFrame implements ActionListener
     	bgPanel = new StartPanel();
     	//請參考java swing 
     	//獲取默認工具包
-    	image = Toolkit.getDefaultToolkit().getImage("Start.jpg");
+    	image = Toolkit.getDefaultToolkit().getImage("src/Resource/Start.jpg");
     	contentPanel = new JPanel();
-        ImageIcon icon = new ImageIcon("button.png"); 
+        ImageIcon icon = new ImageIcon("src/Resource/button.png"); 
         icon.setImage(icon.getImage().getScaledInstance(100,80,Image.SCALE_DEFAULT));
         
         // 2.設置要顯示之資訊與元件

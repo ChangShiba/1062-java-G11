@@ -60,7 +60,7 @@ public class Mario extends Thread{
     //人物圖片寬高  
     public int width=60,height=62;  
     //人物圖片
-    public Image img = new ImageIcon("小星人.png").getImage();  
+    public Image img = new ImageIcon("src/Resource/小星人.png").getImage();  
       
     public boolean left=false,right=false,down=false,up=false;  
       
@@ -88,7 +88,7 @@ public class Mario extends Thread{
                 if(this.x2>=0){
                     x=x2;
                     //向左的圖片
-                    this.img=new ImageIcon("小星人.png").getImage();  
+                    this.img=new ImageIcon("src/Resource/小星人.png").getImage();  
                 }  
                   
                 this.xspeed=5;  
@@ -104,7 +104,7 @@ public class Mario extends Thread{
                 if(this.x2<400){  
                     x=x2;
                     //向右的圖片
-                    this.img=new ImageIcon("小星人.png").getImage();  
+                    this.img=new ImageIcon("src/Resource/小星人.png").getImage();  
                 }  
                   
                 if(this.x>=400){  
@@ -115,7 +115,7 @@ public class Mario extends Thread{
                         Enery enery = gf.eneryList.get(i);  
                         enery.x-=this.xspeed;  
                     }  
-                    this.img=new ImageIcon("小星人.png").getImage();  
+                    this.img=new ImageIcon("src/Resource/小星人.png").getImage();  
                 }  
                 this.xspeed=5;  
             }  

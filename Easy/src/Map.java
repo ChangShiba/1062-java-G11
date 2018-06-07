@@ -15,7 +15,7 @@ public class Map {
       
     public  int[][] readMap() throws Exception {  
         // map.txt輸入數據(frame呼叫偵測)
-        FileInputStream fis = new FileInputStream("map.txt");  
+        FileInputStream fis = new FileInputStream("src/Resource/map.txt");  
         InputStreamReader isr = new InputStreamReader(fis);  
         BufferedReader br = new BufferedReader(isr);  
           

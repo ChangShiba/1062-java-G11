@@ -10,7 +10,7 @@ public class Rule extends JFrame{
 	Image rulebg = null;
 	public Rule(){
 		rulePanel = new StartPanel();
-		rulebg = Toolkit.getDefaultToolkit().getImage("Rule.jpeg");
+		rulebg = Toolkit.getDefaultToolkit().getImage("src/Resource/Rule.jpeg");
 		
 		rulePanel.setImage(rulebg);
 		rulePanel.setLayout(new java.awt.BorderLayout());
