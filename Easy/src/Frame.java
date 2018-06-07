@@ -83,7 +83,7 @@ public class Frame extends JFrame{
     public void initFrame(){  
         //設置相關屬性 
         this.setSize(1000,600);  
-        this.setTitle("little_planet");  
+        this.setTitle("Little Planet");  
         this.setResizable(false); //視窗不可伸縮 
         this.setLocationRelativeTo(null);  //置中
         this.setDefaultCloseOperation(3);  //按X關閉視窗

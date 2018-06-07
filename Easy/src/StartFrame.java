@@ -73,7 +73,7 @@ public class StartFrame extends JFrame implements ActionListener
         bgPanel.setLayout(new java.awt.BorderLayout());
         bgPanel.add(contentPanel, BorderLayout.CENTER);
         // 4.設置frame之基本設定
-        this.setTitle("小莉歐遊戲");
+        this.setTitle("Little Planet");
         this.setLayout(new java.awt.BorderLayout());
         this.add(bgPanel, BorderLayout.CENTER);
         this.setMinimumSize(new java.awt.Dimension(1000, 600));
