@@ -22,11 +22,8 @@ public class Frame extends JFrame{
     //敵人 範圍
     public ArrayList<Enery> eneryList = new ArrayList<Enery>();  
       
-    //子彈
-    //public ArrayList<Boom> boomList = new ArrayList<Boom>();  
+  
       
-    //子彈速度  
-    public int bspeed=0;  
       
     //1->磚頭(磚頭)，2->金幣(星星)，3->水管(火箭)  
     public int [][] map =null;  
@@ -68,8 +65,7 @@ public class Frame extends JFrame{
             public void run(){  
                 while(true){   
                     repaint();  
-                    //檢查子彈是否出界  
-                    //checkBoom();  
+                    
                     try {  
                         Thread.sleep(10);  
                     } catch (InterruptedException e) {  
@@ -113,30 +109,16 @@ public class Frame extends JFrame{
             big.drawImage(e.img, e.x, e.y, e.width, e.height,null);  
         }  
           
-        //畫子彈  
-        /*for (int i = 0; i < boomList.size(); i++) {  
-            Boom b =boomList.get(i);  
-            Color c =big.getColor();  
-            big.setColor(Color.red);  
-            big.fillOval(b.x+=b.speed, b.y, b.width, b.width);  
-            big.setColor(c);  
-        }  */
+       
           
         //畫人物
         big.drawImage(mario.img, mario.x, mario.y, mario.width, mario.height,null);  
+        
         //全部畫面執行
         g.drawImage(bi,0,0,null);  
           
     } 
       
-    //檢查子彈
-/*   public void checkBoom(){  
-       for (int i = 0; i < boomList.size(); i++) {  
-            Boom b = boomList.get(i);  
-            if(b.x<0 || b.x>800){  
-                boomList.remove(i);  
-            }  
-        }  
-    }*/
+   
   
 }  

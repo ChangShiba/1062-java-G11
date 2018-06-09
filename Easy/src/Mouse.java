@@ -27,7 +27,10 @@ public class Mouse extends Frame implements MouseListener,MouseMotionListener{
 		if(run==true&&press==false) {
 			mario.setX2(e.getX());
 			mario.setY2(e.getY());
+			System.out.printf("getx=%d,gety=%d%n",e.getX(),e.getY());
+//			System.out.printf("x1=%d,y1=%d%n",mario.getX(),mario.getY());
 			System.out.printf("x2=%d,y2=%d%n",mario.getX2(),mario.getY2());
+//		
 		}
 		
 	}
@@ -38,13 +41,13 @@ public class Mouse extends Frame implements MouseListener,MouseMotionListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		//如果滑鼠點到人物，監測座標，並使人物移動
+		//如果滑鼠點到人物，監測座標
 		System.out.println("mousePressed");
 		if(mario.getX2()-mario.getX()<=45 && mario.getY2()-mario.getY()<=57 && press==true) {
 			run=true;
 			press=false;
 			System.out.printf("x2=%d,y2=%d%n",mario.getX2(),mario.getY2());
-		}else if(run==true&&press==false) {
+		}else if(mario.getX2()-mario.getX()<=45 && mario.getY2()-mario.getY()<=57&&run==true&&press==false) {
 			run=false;
 			press=true;
 		}
