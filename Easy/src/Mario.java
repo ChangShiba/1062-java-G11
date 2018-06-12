@@ -95,12 +95,12 @@ public class Mario extends Thread{
 //            	jump(); 
 //                if(jumpFlag && !isGravity){  
 //                    jumpFlag=false;  
-//                    new Thread(){  
-//                        public void run(){  
-//                            jump();  
-//                            jumpFlag=true;  
-//                        }  
-//                    };  
+                    new Thread(){  
+                        public void run(){  
+                            jump();  
+                            jumpFlag=true;  
+                        }  
+                    };  
 //                }  
 //            }
             

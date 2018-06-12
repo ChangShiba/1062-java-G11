@@ -13,7 +13,7 @@ import java.util.Observer;
  */
 public class StartFrame extends JFrame implements ActionListener
 {
-	Frame frame;
+	gameFrame gamePanel;
 	StartPanel bgPanel = null;
     JPanel contentPanel = null;
     JLabel label = null;
@@ -86,13 +86,14 @@ public class StartFrame extends JFrame implements ActionListener
 
 	@Override
 	public void actionPerformed(ActionEvent e){
+		
 		if(e.getSource()==Start) {
 			try {
-				frame = new Frame();
+				 new gameFrame();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-			frame.initFrame();
+//			frame.initFrame();
 		}
 		if(e.getSource()==Scores) {
 			

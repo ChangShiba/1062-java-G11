@@ -80,6 +80,8 @@ public class Frame extends JFrame{
         //設置相關屬性 
         this.setSize(1000,600);  
         this.setTitle("Little Planet");  
+      //  this.getContentPane().add(new enemy());
+        
         this.setResizable(false); //視窗不可伸縮 
         this.setLocationRelativeTo(null);  //置中
         this.setDefaultCloseOperation(3);  //按X關閉視窗
@@ -112,7 +114,7 @@ public class Frame extends JFrame{
        
           
         //畫人物
-        big.drawImage(mario.img, mario.x, mario.y, mario.width, mario.height,null);  
+       // big.drawImage(mario.img, mario.x, mario.y, mario.width, mario.height,null);  
         
         //全部畫面執行
         g.drawImage(bi,0,0,null);  

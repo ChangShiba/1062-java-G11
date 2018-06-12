@@ -1,7 +1,7 @@
 
 import java.awt.Image;  
   
-//障礙物
+
 public abstract class Enery {  
       
     public int x,y;  
