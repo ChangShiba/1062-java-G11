@@ -46,8 +46,8 @@ public class MP3 {
     }
     
     public void stop() {
-    	loop = false;
-    	System.out.println("close "+loop);
+    	//loop = false;
+    	//System.out.println("close "+loop);
     	audioThread.stop();
     }
 
@@ -60,7 +60,7 @@ public class MP3 {
 			e.printStackTrace();
 		}
     	
-    	loop = true;
+    	loop = false;
     	System.out.println("resume: "+loop);
     	play();
     }
@@ -77,8 +77,8 @@ public class MP3 {
                         player = new Player(bis);
                     }
                     catch (Exception e) {
-                        System.out.println("Problem playing file " + filename);
-                        System.out.println(e);
+//                        System.out.println("Problem playing file " + filename);
+//                        System.out.println(e);
                     }
 
             		try { player.play(); }
@@ -89,6 +89,14 @@ public class MP3 {
         audioThread.start();
         
     }
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 
 
     // test client

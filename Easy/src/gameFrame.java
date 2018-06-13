@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 
 import com.sun.glass.events.WindowEvent;
 
-public class GameFrame extends JFrame implements MouseListener,MouseMotionListener{
+public class GameFrame  implements MouseListener,MouseMotionListener{
 	private static int x=1000,y=600;
 	private static int x2[]= {0,0,0};
 	private static int y2[]={0,0,0};
@@ -46,7 +46,7 @@ public class GameFrame extends JFrame implements MouseListener,MouseMotionListen
 		gameAudio3.start();
 		gameAudio4.start();
 		gameAudio5.start();
-	
+		filename2 = "src/Resource/gamems.mp3";
 	 game.setTitle("Little Planet");
      game.setLayout(new java.awt.BorderLayout());
 //     game.add(enemy, BorderLayout.CENTER);
@@ -66,12 +66,12 @@ public class GameFrame extends JFrame implements MouseListener,MouseMotionListen
      imagePanel.setOpaque(false);
      game.getLayeredPane().add(bgLabel, new Integer(Integer.MIN_VALUE));     // 把背景圖添加到分層窗格的最底層以作為背景
      
-     this.setResizable(false);
-     this.setLocationRelativeTo(null);
-     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-     this.setVisible(true);
+     game.setResizable(false);
+     game.setLocationRelativeTo(null);
+     game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+     game.setVisible(true);
      //加入分數
-     
+     games_mp3.play();
      printScore();
     
     
@@ -272,10 +272,10 @@ public class GameFrame extends JFrame implements MouseListener,MouseMotionListen
 
 	Thread gameAudio2 = new Thread() {
         public void run() {
-        	filename2 = "src/Resource/gamems.mp3";
+        	
        	 games_mp3 = new MP3(filename2);
-       	 games_mp3.setLoop(true);
-       	 games_mp3.play();
+       	 games_mp3.setLoop(false);
+       	 
     }
  }; 
 
@@ -284,6 +284,13 @@ public class GameFrame extends JFrame implements MouseListener,MouseMotionListen
         	 filename3 = "src/Resource/bo.mp3";
         	 press_mp3 = new MP3(filename3);
         	 press_mp3.setLoop(false);
+        	try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
      }
   };
   Thread gameAudio4 = new Thread() {
@@ -291,6 +298,7 @@ public class GameFrame extends JFrame implements MouseListener,MouseMotionListen
      	 filename4 = "src/Resource/monster.mp3";
      	 hit_mp3 = new MP3(filename4);
      	 hit_mp3.setLoop(false);
+    
   }
 };
 Thread gameAudio5 = new Thread() {
@@ -298,6 +306,7 @@ Thread gameAudio5 = new Thread() {
    	 filename5 = "src/Resource/monster2.mp3";
    	 hit2_mp3 = new MP3(filename5);
    	 hit2_mp3.setLoop(false);
+   	
 }
 };
 
@@ -307,13 +316,34 @@ TimerTask tt = new TimerTask() {
 	public void run() {
 		game.getLayeredPane().add(jl, new Integer(Integer.MIN_VALUE)+1);
 		count=5;
-	while(count>0) {
+	while(count>=0) {
 		jl.setText(String.valueOf(count)+"s");
 		jl.setFont(new Font("", Font.BOLD, 50));
 		jl.setBounds(400, 0, 200,50 );
 		jl.setForeground(Color.magenta);
+		count--;
 		
-		
+		if (count == 0) {
+			
+//			gameAudio2.stop();
+//			gameAudio3.stop();
+//			gameAudio4.stop();
+//			gameAudio5.stop();
+//			press_mp3.stop();
+//			hit_mp3.stop();
+//			hit2_mp3.stop();
+			
+			try {
+				new Gameover();
+				game.dispose();
+				Thread.sleep(500);
+				
+				t.cancel();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+
+			}
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -321,27 +351,7 @@ TimerTask tt = new TimerTask() {
 			e.printStackTrace();
 		}
 		
-		count--;
 		
-		
-		
-		if (count == 0) {
-			games_mp3.stop();
-			game.dispose();
-			System.out.println("55");
-			try {
-				new Gameover();
-				game.dispose();
-				Thread.sleep(500);
-				t.cancel();
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-			
-			
-			
-			
-			}
 	}
 	}
 };
@@ -390,8 +400,9 @@ TimerTask tt = new TimerTask() {
 		my=e.getY();
 		hit=true;
 		score-=5;
-		 press_mp3.play();
+		press_mp3.play();
 		
+		games_mp3.stop();
 		
 		
 

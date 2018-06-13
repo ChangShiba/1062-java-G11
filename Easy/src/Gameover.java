@@ -1,7 +1,10 @@
 
 	import java.awt.*;
 	import javax.swing.*;
-	import java.awt.event.*;
+
+import com.sun.glass.events.WindowEvent;
+
+import java.awt.event.*;
 
 public class Gameover extends JFrame{
 
@@ -54,7 +57,13 @@ public class Gameover extends JFrame{
 	        c.add(yes);
 	        
 	        
-	      
+	        this.addWindowListener(new WindowAdapter()
+	    	{
+	    	public void windowClosing(WindowEvent e)
+	    	{
+	    	System.exit(0);
+	    	}
+	    	});
 	         
 	         rulePanel = new StartPanel();
 	 		rulebg = Toolkit.getDefaultToolkit().getImage("src/Resource/gameover.jpeg");
@@ -69,7 +78,7 @@ public class Gameover extends JFrame{
 	         this.setMinimumSize(new java.awt.Dimension(400, 600));
 	         this.setResizable(false);
 	         this.setLocationRelativeTo(null);
-	         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
+	         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	         this.setVisible(true);
 	         
 	         Thread gameAudio = new Thread() {
