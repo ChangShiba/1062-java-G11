@@ -24,8 +24,9 @@ public class StartFrame extends JFrame implements ActionListener
 	private JButton Exit;
 	boolean close=false;
 	
-	String filename1,filename2;
-	MP3 start_mp3,game_mp3;
+	String filename1;
+	MP3 start_mp3;
+	 
 	
     public StartFrame(){
     	super();
@@ -129,14 +130,8 @@ public class StartFrame extends JFrame implements ActionListener
 	      };
 	      gameAudio.start(); 
           
-	      Thread gameAudio2 = new Thread() {
-			         public void run() {
-			        	 filename2 = "src/Resource/gamems.mp3";
-			        	 game_mp3 = new MP3(filename2);
-			        	 game_mp3.setLoop(true);
-		         }
-		      };
-		      gameAudio2.start(); 
+	  
+		      
 	          
 	         
     }
@@ -148,7 +143,7 @@ public class StartFrame extends JFrame implements ActionListener
 			try {
 				new GameFrame();
 				Thread.sleep(500);
-                game_mp3.play();
+               // game_mp3.play();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}

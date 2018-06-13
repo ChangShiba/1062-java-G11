@@ -95,15 +95,15 @@ public class Gameover extends JFrame{
 	                String pw = jname.getText();
 	                System.out.println(""+pw.toString());
 	                System.out.println("yes");
+	                
 	                dispose();
+	                new StartFrame();
+	                
 	            }
 	        }
 	    }
 	    
-	    public static void main(String [] args)
-	    {
-	    	Gameover pw = new Gameover();
-	    }
+	    
 	}
 
 
