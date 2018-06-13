@@ -13,7 +13,7 @@ import java.util.Observer;
  */
 public class StartFrame extends JFrame implements ActionListener
 {
-	gameFrame gamePanel;
+	Frame frame;
 	StartPanel bgPanel = null;
     JPanel contentPanel = null;
     JLabel label = null;
@@ -24,6 +24,9 @@ public class StartFrame extends JFrame implements ActionListener
 	private JButton Exit;
 	boolean close=false;
 	
+	String filename1,filename2;
+	MP3 start_mp3,game_mp3;
+	
     public StartFrame(){
     	super();
         // 1.生成元件
@@ -33,15 +36,26 @@ public class StartFrame extends JFrame implements ActionListener
     	image = Toolkit.getDefaultToolkit().getImage("src/Resource/Start.jpg");
     	contentPanel = new JPanel();
         ImageIcon icon = new ImageIcon("src/Resource/button.png"); 
-        icon.setImage(icon.getImage().getScaledInstance(100,80,Image.SCALE_DEFAULT));
+        icon.setImage(icon.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT));
+        ImageIcon icon2 = new ImageIcon("src/Resource/button2.png"); 
+        icon2.setImage(icon2.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT));
+        ImageIcon icon3 = new ImageIcon("src/Resource/button3.png"); 
+        icon3.setImage(icon3.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT));
+        ImageIcon icon4= new ImageIcon("src/Resource/button4.png"); 
+        icon4.setImage(icon4.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT));
+        
+        JLabel tImage = new JLabel(new ImageIcon("src/Resource/title.gif"));    //创建一个带图片的 JLabel
+        tImage.setBounds(100, 0, 600, 500);    //设置 图片的横坐标、纵坐标、宽、高
+        contentPanel.add(tImage); 
         
         // 2.設置要顯示之資訊與元件
         Start = new JButton("Start",icon);
-        Start.setBounds(775,100,80,80);//start botton 位置大小
+        Start.setBounds(775,60,100,100);//start botton 位置大小
         Start.setOpaque(false);
         Start.setVerticalTextPosition(JButton.CENTER);
         Start.setHorizontalTextPosition(JButton.CENTER);  
-        //Start.setBorder(null);
+        Start.setFont(new Font("Gotham",Font.BOLD ,18) ) ;
+        Start.setForeground(Color.black);
         Start.setContentAreaFilled(false);
         //Start.setSize(Start.getPreferredSize());
         contentPanel.add(Start);
@@ -52,18 +66,41 @@ public class StartFrame extends JFrame implements ActionListener
             }
           });
         
-        Scores = new JButton("Scores");
-        Scores.setBounds(775,200,100,50);
+        Scores = new JButton("Scores",icon2);
+        Scores.setBounds(775,180,100,100);
+        Scores.setOpaque(false);
+        Scores.setVerticalTextPosition(JButton.CENTER);
+        Scores.setHorizontalTextPosition(JButton.CENTER);  
+        Scores.setFont(new Font("Gotham",Font.BOLD ,18) ) ;
+        Scores.setForeground(Color.white);
+        Scores.setContentAreaFilled(false);
+        //Start.setSize(Start.getPreferredSize());
         contentPanel.add(Scores);
         Scores.addActionListener(this);
-    	Rule = new JButton("Rule");
-    	Rule.setBounds(775,300,100,50);
-    	contentPanel.add(Rule);
-    	Rule.addActionListener(this);
-    	Exit = new JButton("Exit");
-    	Exit.setBounds(775,400,100,50);
-    	contentPanel.add(Exit);
-    	Exit.addActionListener(this);
+        
+    	Rule = new JButton("Rule",icon3);
+    	Rule.setBounds(775,300,100,100);
+    	Rule.setOpaque(false);
+    	Rule.setVerticalTextPosition(JButton.CENTER);
+    	Rule.setHorizontalTextPosition(JButton.CENTER);  
+    	Rule.setFont(new Font("Gotham",Font.BOLD ,18) ) ;
+    	Rule.setForeground(Color.white);
+    	Rule.setContentAreaFilled(false);
+        //Start.setSize(Start.getPreferredSize());
+        contentPanel.add(Rule);
+        Rule.addActionListener(this);
+        
+    	Exit = new JButton("Exit",icon4);
+    	Exit.setBounds(775,420,100,100);
+    	Exit.setOpaque(false);
+    	Exit.setVerticalTextPosition(JButton.CENTER);
+    	Exit.setHorizontalTextPosition(JButton.CENTER); 
+    	Exit.setFont(new Font("Gotham",Font.BOLD ,18) ) ;
+    	Exit.setForeground(Color.BLACK);
+    	Exit.setContentAreaFilled(false);
+        //Start.setSize(Start.getPreferredSize());
+        contentPanel.add(Exit);
+        Exit.addActionListener(this);
     	//不要borderlayout
         contentPanel.setLayout(null);
         //透明化
@@ -81,27 +118,50 @@ public class StartFrame extends JFrame implements ActionListener
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+        
+        Thread gameAudio = new Thread() {
+	         public void run() {
+	        	 filename1 = "src/Resource/startms.mp3";
+	        	 start_mp3 = new MP3(filename1);
+	        	 start_mp3.setLoop(true);
+	        	 start_mp3.play();
+	         }
+	      };
+	      gameAudio.start(); 
           
+	      Thread gameAudio2 = new Thread() {
+			         public void run() {
+			        	 filename2 = "src/Resource/gamems.mp3";
+			        	 game_mp3 = new MP3(filename2);
+			        	 game_mp3.setLoop(true);
+		         }
+		      };
+		      gameAudio2.start(); 
+	          
+	         
     }
 
 	@Override
 	public void actionPerformed(ActionEvent e){
-		
 		if(e.getSource()==Start) {
+			start_mp3.stop();
 			try {
-				 new gameFrame();
+				new gameFrame();
+				Thread.sleep(500);
+                game_mp3.play();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-//			frame.initFrame();
+			
 		}
 		if(e.getSource()==Scores) {
-			
+			new Scores();
 		}
 		if(e.getSource()==Rule) {
 			new Rule();
 		}
 		if(e.getSource()==Exit) {
+			start_mp3.stop();
 			dispose();
 		}
 	}
