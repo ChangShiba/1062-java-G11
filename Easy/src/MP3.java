@@ -100,13 +100,13 @@ public class MP3 {
         mp3.play();
 
         // do whatever computation you like, while music plays
-        int N = 4000;
-        double sum = 0.0;
-        for (int i = 0; i < N; i++) {
+       int N = 4000;
+       double sum = 0.0;
+       for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                sum += Math.sin(i + j);
-            }
-        }
+          sum += Math.sin(i + j);
+           }
+       }
         System.out.println(sum);
 
         // when the computation is done, stop playing it

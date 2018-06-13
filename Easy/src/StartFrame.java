@@ -146,7 +146,7 @@ public class StartFrame extends JFrame implements ActionListener
 		if(e.getSource()==Start) {
 			start_mp3.stop();
 			try {
-				new gameFrame();
+				new GameFrame();
 				Thread.sleep(500);
                 game_mp3.play();
 			} catch (Exception e1) {

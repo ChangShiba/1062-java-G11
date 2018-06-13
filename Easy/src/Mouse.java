@@ -47,7 +47,7 @@ public class Mouse extends Frame implements MouseListener,MouseMotionListener{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		
-		gameFrame.setEnemyappear(true);
+		GameFrame.setEnemyappear(true);
 		
 		
 	}

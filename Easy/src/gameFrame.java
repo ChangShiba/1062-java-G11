@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 import com.sun.glass.events.WindowEvent;
 
-public class gameFrame extends JFrame implements MouseListener,MouseMotionListener{
+public class GameFrame extends JFrame implements MouseListener,MouseMotionListener{
 	public static int x=900,y=1300,x2=x+100,y2=y+125;
 	public static int speedx=20,speedy=20;
 	public static int mx,my;
@@ -24,7 +24,7 @@ public class gameFrame extends JFrame implements MouseListener,MouseMotionListen
 	 ImageIcon background = null;
 	 JFrame game = new JFrame("game");
 
-	public gameFrame() {
+	public GameFrame() {
 		super(); 
 		
 	 game.setTitle("Little Planet");
@@ -142,7 +142,7 @@ public class gameFrame extends JFrame implements MouseListener,MouseMotionListen
 	}
 
 	public static void setX(int x) {
-		gameFrame.x = x;
+		GameFrame.x = x;
 	}
 
 	public  int getY() {
@@ -150,7 +150,7 @@ public class gameFrame extends JFrame implements MouseListener,MouseMotionListen
 	}
 
 	public static void setY(int y) {
-		gameFrame.y = y;
+		GameFrame.y = y;
 	}
 
 	public static int getSpeedx() {
@@ -158,7 +158,7 @@ public class gameFrame extends JFrame implements MouseListener,MouseMotionListen
 	}
 
 	public static void setSpeedx(int speedx) {
-		gameFrame.speedx = speedx;
+		GameFrame.speedx = speedx;
 	}
 
 	public static int getSpeedy() {
@@ -166,7 +166,7 @@ public class gameFrame extends JFrame implements MouseListener,MouseMotionListen
 	}
 
 	public static void setSpeedy(int speedy) {
-		gameFrame.speedy = speedy;
+		GameFrame.speedy = speedy;
 	}
 
 
@@ -175,7 +175,7 @@ public class gameFrame extends JFrame implements MouseListener,MouseMotionListen
 	}
 
 	public static void setEnemyappear(boolean enemyappear) {
-		gameFrame.enemyappear = enemyappear;
+		GameFrame.enemyappear = enemyappear;
 	}
 
 	public static int getX2() {
@@ -183,7 +183,7 @@ public class gameFrame extends JFrame implements MouseListener,MouseMotionListen
 	}
 
 	public static void setX2(int x2) {
-		gameFrame.x2 = x2;
+		GameFrame.x2 = x2;
 	}
 
 	public static int getY2() {
@@ -191,7 +191,7 @@ public class gameFrame extends JFrame implements MouseListener,MouseMotionListen
 	}
 
 	public static void setY2(int y2) {
-		gameFrame.y2 = y2;
+		GameFrame.y2 = y2;
 	}
 
 	@Override
@@ -221,7 +221,7 @@ public class gameFrame extends JFrame implements MouseListener,MouseMotionListen
 	public void mousePressed(MouseEvent e) {
 		mx=e.getX();
 		my=e.getY();
-		gameFrame.enemyappear=true;
+		GameFrame.enemyappear=true;
 		System.out.println("***");
 		enemys();
 		enemys1();
