@@ -57,7 +57,8 @@ public class Scores extends JFrame {
 		c.add(content2);
 
 		scorePanel = new StartPanel();
-		scorebg = Toolkit.getDefaultToolkit().getImage("src/Resource/Score.jpeg");
+		java.net.URL imgURL = Scores.class.getResource("Resource/Score.jpeg");
+		scorebg = Toolkit.getDefaultToolkit().getImage(imgURL);
 		scorePanel.setImage(scorebg);
 		// scorePanel.setLayout(null);
 		scorePanel.setLayout(new java.awt.BorderLayout());

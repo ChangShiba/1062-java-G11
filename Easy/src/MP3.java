@@ -20,11 +20,14 @@
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 import javazoom.jl.player.Player;
 
 public class MP3 {
 	private String filename;
+	private InputStream file;
 	private Player player;
 	private boolean loop = false;
 	private FileInputStream fis;
@@ -40,6 +43,10 @@ public class MP3 {
 		this.filename = filename;
 	}
 
+	public MP3(InputStream file) {
+		this.file = file;
+	}
+	
 	public void setLoop(boolean loop) {
 		this.loop = loop;
 	}
@@ -68,37 +75,38 @@ public class MP3 {
 	// play the MP3 file to the sound card
 	public void play() {
 		// run in new thread to play in background
-		audioThread = new Thread(new Runnable() {
+		audioThread = new Thread() {
 			public void run() {
 				do {
 					try {
-						fis = new FileInputStream(filename);
-						bis = new BufferedInputStream(fis);
+						//fis = new FileInputStream(filename);
+						bis = new BufferedInputStream(file);
 						player = new Player(bis);
+						//bis.close();
 					} catch (Exception e) {
 						// System.out.println("Problem playing file " + filename);
-						// System.out.println(e);
+						//System.out.println(e);
 					}
-
 					try {
 						player.play();
+						//System.out.println("test");
 					} catch (Exception e) {
 						System.out.println(e);
 					}
+					
 				} while (loop);
 			}
-		});
+		};
 		audioThread.start();
-
 	}
 
-	public String getFilename() {
-		return filename;
-	}
-
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
+//	public String getFilename() {
+//		return filename;
+//	}
+//
+//	public void setFilename(String filename) {
+//		this.filename = filename;
+//	}
 
 	// test client
 	// public static void main(String[] args) {

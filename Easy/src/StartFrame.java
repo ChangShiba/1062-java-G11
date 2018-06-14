@@ -1,10 +1,15 @@
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -32,18 +37,31 @@ public class StartFrame extends JFrame implements ActionListener {
 		bgPanel = new StartPanel();
 		// 請參考java swing
 		// 獲取默認工具包
-		image = Toolkit.getDefaultToolkit().getImage("src/Resource/Start.jpg");
+		java.net.URL imgURL = StartFrame.class.getResource("Resource/Start.jpg");
+		image = Toolkit.getDefaultToolkit().getImage(imgURL);
 		contentPanel = new JPanel();
-		ImageIcon icon = new ImageIcon("src/Resource/button.png");
+		java.net.URL imgURL1 = StartFrame.class.getResource("Resource/button.png");
+		ImageIcon icon = new ImageIcon(imgURL1);
+		//ImageIcon icon = new ImageIcon("src/Resource/button.png");
 		icon.setImage(icon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-		ImageIcon icon2 = new ImageIcon("src/Resource/button2.png");
+		
+		java.net.URL imgURL2 = StartFrame.class.getResource("Resource/button2.png");
+		ImageIcon icon2 = new ImageIcon(imgURL2);
+		//ImageIcon icon2 = new ImageIcon("src/Resource/button2.png");
 		icon2.setImage(icon2.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-		ImageIcon icon3 = new ImageIcon("src/Resource/button3.png");
+		
+		java.net.URL imgURL3 = StartFrame.class.getResource("Resource/button3.png");
+		ImageIcon icon3 = new ImageIcon(imgURL3);
+		//ImageIcon icon3 = new ImageIcon("src/Resource/button3.png");
 		icon3.setImage(icon3.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-		ImageIcon icon4 = new ImageIcon("src/Resource/button4.png");
+		
+		java.net.URL imgURL4 = StartFrame.class.getResource("Resource/button4.png");
+		ImageIcon icon4 = new ImageIcon(imgURL4);
+		//ImageIcon icon4 = new ImageIcon("src/Resource/button4.png");
 		icon4.setImage(icon4.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 
-		JLabel tImage = new JLabel(new ImageIcon("src/Resource/title.gif")); // 创建一个带图片的 JLabel
+		java.net.URL imgURL5 = StartFrame.class.getResource("Resource/title.gif");
+		JLabel tImage = new JLabel(new ImageIcon(imgURL5)); // 创建一个带图片的 JLabel
 		tImage.setBounds(100, 0, 600, 500); // 设置 图片的横坐标、纵坐标、宽、高
 		contentPanel.add(tImage);
 
@@ -120,8 +138,10 @@ public class StartFrame extends JFrame implements ActionListener {
 
 		Thread gameAudio = new Thread() {
 			public void run() {
-				filename1 = "src/Resource/startms.mp3";
-				start_mp3 = new MP3(filename1);
+				InputStream in = StartFrame.class.getClassLoader().getResourceAsStream("Resource/startms.mp3");
+				//filename1 = "src/Resource/startms.mp3";
+				//start_mp3 = new MP3(filename1);
+				start_mp3 = new MP3(in);
 				start_mp3.setLoop(true);
 				start_mp3.play();
 			}

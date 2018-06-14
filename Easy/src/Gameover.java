@@ -5,6 +5,7 @@ import javax.swing.*;
 import com.sun.glass.events.WindowEvent;
 
 import java.awt.event.*;
+import java.io.InputStream;
 
 public class Gameover extends JFrame {
 
@@ -14,7 +15,7 @@ public class Gameover extends JFrame {
 	private JButton yes;
 	private ButtonHandler hbtHandler = new ButtonHandler(); // 處理按鈕事件
 	private int scores = GameFrame.getScore();
-
+	InputStream music;
 	StartPanel rulePanel;
 	Image rulebg = null;
 
@@ -25,9 +26,10 @@ public class Gameover extends JFrame {
 
 		Container c = getContentPane();
 		c.setLayout(null);
+		java.net.URL imgURL = Gameover.class.getResource("Resource/go.gif");
 
-		JLabel Image = new JLabel(new ImageIcon("src/Resource/go.gif"));
-		Image.setBounds(0, 150, 400, 200); // 设置 图片的横坐标、纵坐标、宽、高
+		JLabel Image = new JLabel(new ImageIcon(imgURL));
+		Image.setBounds(0, 150, 400, 200); 
 		c.add(Image);
 
 		score.setLocation(120, 290);
@@ -70,7 +72,8 @@ public class Gameover extends JFrame {
 		});
 
 		rulePanel = new StartPanel();
-		rulebg = Toolkit.getDefaultToolkit().getImage("src/Resource/gameover.jpeg");
+		java.net.URL imgURL2 = Gameover.class.getResource("Resource/gameover.jpeg");
+		rulebg = Toolkit.getDefaultToolkit().getImage(imgURL2);
 
 		rulePanel.setImage(rulebg);
 		rulePanel.setLayout(new java.awt.BorderLayout());
@@ -87,8 +90,9 @@ public class Gameover extends JFrame {
 
 		Thread gameAudio = new Thread() {
 			public void run() {
-				filename = "src/Resource/Game Over.mp3";
-				gameover_mp3 = new MP3(filename);
+				music = Gameover.class.getClassLoader().getResourceAsStream("Resource/Game Over.mp3");
+				//filename = "src/Resource/Game Over.mp3";
+				gameover_mp3 = new MP3(music);
 				gameover_mp3.setLoop(true);
 				gameover_mp3.play();
 
@@ -111,7 +115,6 @@ public class Gameover extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-
 				dispose();
 				new StartFrame();
 

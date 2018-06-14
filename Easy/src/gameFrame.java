@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowAdapter;
+import java.io.InputStream;
 import java.util.EventListener;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -30,9 +31,16 @@ public class GameFrame implements MouseListener, MouseMotionListener {
 	private boolean hit;
 	private Timer t = new Timer();
 
+	InputStream music = GameFrame.class.getClassLoader().getResourceAsStream("Resource/gamems.mp3");
+	InputStream music2 = GameFrame.class.getClassLoader().getResourceAsStream("Resource/bo.mp3");
+	InputStream music3 = GameFrame.class.getClassLoader().getResourceAsStream("Resource/monster.mp3");
+	InputStream music4 = GameFrame.class.getClassLoader().getResourceAsStream("Resource/monster2.mp3");
+	
 	String filename2, filename3, filename4, filename5;
 	static MP3 press_mp3, hit_mp3, hit2_mp3, games_mp3;
-
+	
+	
+	
 	JLabel e[] = new JLabel[10];
 	JLabel wordLabel = null, bgLabel = null;
 	JPanel contentPanel = null, imagePanel = null;
@@ -46,7 +54,8 @@ public class GameFrame implements MouseListener, MouseMotionListener {
 		gameAudio3.start();
 		gameAudio4.start();
 		gameAudio5.start();
-		filename2 = "src/Resource/gamems.mp3";
+		
+		//filename2 = "src/Resource/gamems.mp3";
 		game.setTitle("Little Planet");
 		game.setLayout(new java.awt.BorderLayout());
 		// game.add(enemy, BorderLayout.CENTER);
@@ -57,7 +66,8 @@ public class GameFrame implements MouseListener, MouseMotionListener {
 		game.addMouseMotionListener(this);
 
 		// 3.於JFrame中設置背景圖片 - 圖片無法縮放大小
-		background = new ImageIcon("src/Resource/center.jpg"); // 背景圖片
+		java.net.URL imgURL = GameFrame.class.getResource("Resource/center.jpg");
+		background = new ImageIcon(imgURL); // 背景圖片
 		bgLabel = new JLabel(background); // 把背景圖顯示在Label中
 		bgLabel.setBounds(0, 0, background.getIconWidth(), background.getIconHeight()); // 把含有背景圖之Label位置設置為圖片剛好填充整個版面
 
@@ -73,12 +83,12 @@ public class GameFrame implements MouseListener, MouseMotionListener {
 		// 加入分數
 		games_mp3.play();
 		printScore();
-
-		ImageIcon img = new ImageIcon("src/Resource/enemy.png");
+		java.net.URL imgURL2 = GameFrame.class.getResource("Resource/enemy.png");
+		ImageIcon img = new ImageIcon(imgURL2);
 		e[0] = new JLabel(img);
 
 		game.getLayeredPane().add(e[0], new Integer(Integer.MIN_VALUE) + 1);
-		img = new ImageIcon("src/Resource/enemy.png");
+		//img = new ImageIcon("src/Resource/enemy.png");
 
 		e[0].addMouseListener(new MouseListener() {
 			public void mouseClicked(MouseEvent e) {
@@ -131,8 +141,8 @@ public class GameFrame implements MouseListener, MouseMotionListener {
 				// 处理鼠标释放
 			}
 		});
-
-		img = new ImageIcon("src/Resource/enemy2.png");
+		java.net.URL imgURL3 = GameFrame.class.getResource("Resource/enemy2.png");
+		img = new ImageIcon(imgURL3);
 		e[2] = new JLabel(img);
 		game.getLayeredPane().add(e[2], new Integer(Integer.MIN_VALUE) + 1);
 		e[2].addMouseListener(new MouseListener() {
@@ -272,8 +282,7 @@ public class GameFrame implements MouseListener, MouseMotionListener {
 
 	Thread gameAudio2 = new Thread() {
 		public void run() {
-
-			games_mp3 = new MP3(filename2);
+			games_mp3 = new MP3(music);
 			games_mp3.setLoop(false);
 
 		}
@@ -281,30 +290,34 @@ public class GameFrame implements MouseListener, MouseMotionListener {
 
 	Thread gameAudio3 = new Thread() {
 		public void run() {
-			filename3 = "src/Resource/bo.mp3";
-			press_mp3 = new MP3(filename3);
+			
+			//filename3 = "src/Resource/bo.mp3";
+			press_mp3 = new MP3(music2);
 			press_mp3.setLoop(false);
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			//press_mp3.stop();
+//			try {
+//				Thread.sleep(1000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 
 		}
 	};
 	Thread gameAudio4 = new Thread() {
 		public void run() {
-			filename4 = "src/Resource/monster.mp3";
-			hit_mp3 = new MP3(filename4);
+			
+			//filename4 = "src/Resource/monster.mp3";
+			hit_mp3 = new MP3(music3);
 			hit_mp3.setLoop(false);
 
 		}
 	};
 	Thread gameAudio5 = new Thread() {
 		public void run() {
-			filename5 = "src/Resource/monster2.mp3";
-			hit2_mp3 = new MP3(filename5);
+			
+			//filename5 = "src/Resource/monster2.mp3";
+			hit2_mp3 = new MP3(music4);
 			hit2_mp3.setLoop(false);
 
 		}
@@ -324,14 +337,6 @@ public class GameFrame implements MouseListener, MouseMotionListener {
 				count--;
 
 				if (count == 0) {
-
-					// gameAudio2.stop();
-					// gameAudio3.stop();
-					// gameAudio4.stop();
-					// gameAudio5.stop();
-					// press_mp3.stop();
-					// hit_mp3.stop();
-					// hit2_mp3.stop();
 
 					try {
 						new Gameover();
@@ -393,7 +398,6 @@ public class GameFrame implements MouseListener, MouseMotionListener {
 		hit = true;
 		score -= 5;
 		press_mp3.play();
-
 		games_mp3.stop();
 
 	}

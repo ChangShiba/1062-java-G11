@@ -14,7 +14,8 @@ public class Rule extends JFrame {
 
 	public Rule() {
 		rulePanel = new StartPanel();
-		rulebg = Toolkit.getDefaultToolkit().getImage("src/Resource/Rule.jpeg");
+		java.net.URL imgURL = Rule.class.getResource("Resource/Rule.jpeg");
+		rulebg = Toolkit.getDefaultToolkit().getImage(imgURL);
 
 		rulePanel.setImage(rulebg);
 		rulePanel.setLayout(new java.awt.BorderLayout());
@@ -29,7 +30,8 @@ public class Rule extends JFrame {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 
-		JLabel tImage = new JLabel(new ImageIcon("src/Resource/Talker.gif")); // 创建一个带图片的 JLabel
+		java.net.URL imgURL2 = Rule.class.getResource("Resource/Talker.gif");
+		JLabel tImage = new JLabel(new ImageIcon(imgURL2)); // 创建一个带图片的 JLabel
 		tImage.setBounds(0, 200, 400, 400); // 设置 图片的横坐标、纵坐标、宽、高
 		rulePanel.add(tImage);
 		talk();
